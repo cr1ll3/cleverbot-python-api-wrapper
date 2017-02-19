@@ -29,9 +29,9 @@ class Cleverbot:
         self.cs = self.response['cs']
 
     def ask(self, question):
-        question = urllib.quote_plus(question)
+        question = urllib.quote_plus(question.encode('utf8'))
         qUrl = "{}&input={}&cs={}".format(self.apiUrl, question, self.cs)
         response = json.loads(urllib.urlopen(qUrl).read())
         self.cs = response['cs']
-        print response['output'].encode('utf8')
-        return response['output'].encode('utf8')
+        print response['output']
+        return response['output']
